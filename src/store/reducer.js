@@ -66,6 +66,25 @@ const reducer = (state = initalState, actions) => {
             }
         }
     }
+    if (actions.type === 'DELETE_APPT') {
+        var key = 11;
+        return {
+            ...state,
+            timeslot: {
+                //hardcoded for testing
+                ...state.timeslot,
+                [key]: {
+                    isBooked: false,
+                    name: "",
+                    phoneNumber: ""
+                }
+
+            },
+            modal: {
+                show: false
+            }
+        }
+    }
     return state;
 }
 

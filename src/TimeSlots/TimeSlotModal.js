@@ -6,29 +6,6 @@ import { connect } from "react-redux";
 import "./TimeSlots.css";
 
 class TimeSlotModal extends React.Component {
-  // constructor(props, context) {
-  //   super(props, context);
-
-  //   // this.handleShow = this.handleShow.bind(this);
-  //   // // this.handleClose = this.handleClose.bind(this);
-
-  //   // this.state = {
-  //   //   show: false
-  //   // };
-  // }
-
-  // handleClose() {
-  //   this.setState({
-  //     show: false
-  //   });
-  // }
-
-  // handleShow() {
-  //   this.setState({
-  //     show: true
-  //   });
-  // }
-
   render() {
     return (
       <>
@@ -38,6 +15,12 @@ class TimeSlotModal extends React.Component {
           </Modal.Header>
           <Modal.Body>Woohoo, you 're reading this text in a modal!</Modal.Body>
           <Modal.Footer>
+            {//this.props.isBooked && (
+            true && (
+              <Button variant="secondary" onClick={this.props.handleDelete}>
+                Delete
+              </Button>
+            )}
             <Button variant="secondary" onClick={this.props.handleClose}>
               Close
             </Button>
@@ -59,7 +42,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleClose: () => dispatch({ type: "CLOSE_MODAL" })
+    handleClose: () =>
+      dispatch({
+        type: "CLOSE_MODAL"
+      }),
+    handleDelete: () =>
+      dispatch({
+        type: "DELETE_APPT"
+      })
   };
 };
 
