@@ -1,0 +1,22 @@
+/* .btn {
+    margin: 5px;
+    display: table-cell;
+} */
+
+/* .selections { */
+/* margin-top: 15px; */
+/* align-items: center; */
+/* vertical-align: middle; */
+/* display: table; */
+/* } */
+
+.timeslot-container {
+    /*  */
+}
+
+.timeslot-booked {}
+
+.list-group-item {
+    cursor: pointer;
+    user-select: none;
+}
