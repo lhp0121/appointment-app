@@ -43,9 +43,16 @@ class TimeSlotModal extends React.Component {
     }
   }
 
-  // componentDidUpdate(prevProps) {
-  //   console.log(prevProps);
-  // }
+  componentDidUpdate(prevProps) {
+    if (prevProps.show === false && this.props.show === true) {
+      console.log("changed from false to true");
+      this.setState({
+        inputName: this.props.bookedName,
+        inputNum: this.props.bookedNum,
+        isChanged: false
+      });
+    }
+  }
 
   render() {
     return (
