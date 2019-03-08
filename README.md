@@ -7,7 +7,7 @@ npm start in the terminal
 
 ## Live demo
 
-For a live demo click the link below
+For a live demo click the link 
 https://lhp0121.github.io/timeslotdemo/
 
 ---
