@@ -13,18 +13,18 @@ class TimeSlotModal extends React.Component {
       inputNum: "",
       isChanged: false
     };
-    //TODO: reset initial state on re-open
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit() {
-    // console.log(key);
-    // this.props.handleShow(key);
-    console.log("submit button is clicked");
-    console.log("now need to capture value" + this.props.activeTimeslot);
-    console.log(this.state);
-    this.props.handleSubmit(this.state);
+    if (this.state.inputName === "" && this.state.inputNum === "") {
+      //if input fields are empty even they are changed,
+      //submit button will only close, but not update data in redux
+      this.props.handleClose();
+    } else {
+      this.props.handleSubmit(this.state);
+    }
   }
 
   updateInput(e, field) {
@@ -88,7 +88,10 @@ class TimeSlotModal extends React.Component {
               Delete
             </Button>
             <Button
-              disabled={!this.state.isChanged}
+              disabled={
+                !this.state.isChanged ||
+                (this.state.inputName === "" && this.state.inputNum === "")
+              }
               variant="info"
               onClick={() => this.handleSubmit()}
             >
