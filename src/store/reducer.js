@@ -50,6 +50,7 @@ const initalState = {
 };
 
 const reducer = (state = initalState, actions) => {
+  let key = state.modal.activeTimeslot;
   switch (actions.type) {
     case "CLOSE_MODAL":
       return {
@@ -59,7 +60,7 @@ const reducer = (state = initalState, actions) => {
         }
       };
     case "OPEN_MODAL":
-      console.log("active key entered: " + actions.payload);
+      //console.log("active key entered: " + actions.payload);
       return {
         ...state,
         modal: {
@@ -68,11 +69,9 @@ const reducer = (state = initalState, actions) => {
         }
       };
     case "DELETE_APPT":
-      let key = state.modal.activeTimeslot;
       return {
         ...state,
         timeslot: {
-          //hardcoded for testing
           ...state.timeslot,
           [key]: {
             isBooked: false,
@@ -85,14 +84,15 @@ const reducer = (state = initalState, actions) => {
         }
       };
     case "SUBMIT_APPT":
+      let payload = actions.payload;
       return {
         ...state,
         timeslot: {
           ...state.timeslot,
           [key]: {
             isBooked: true,
-            name: "fgfg",
-            phoneNumber: "fgfg"
+            name: payload.inputName,
+            phoneNumber: payload.inputNum
           }
         },
         modal: {

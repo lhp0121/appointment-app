@@ -6,6 +6,47 @@ import { connect } from "react-redux";
 import "./TimeSlots.css";
 
 class TimeSlotModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputName: "",
+      inputNum: "",
+      isChanged: false
+    };
+    //TODO: reset initial state on re-open
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit() {
+    // console.log(key);
+    // this.props.handleShow(key);
+    console.log("submit button is clicked");
+    console.log("now need to capture value" + this.props.activeTimeslot);
+    console.log(this.state);
+    this.props.handleSubmit(this.state);
+  }
+
+  updateInput(e, field) {
+    this.setState({
+      isChanged: true
+    });
+    if (field === "name") {
+      this.setState({
+        inputName: e.target.value
+      });
+    }
+    if (field === "num") {
+      this.setState({
+        inputNum: e.target.value
+      });
+    }
+  }
+
+  // componentDidUpdate(prevProps) {
+  //   console.log(prevProps);
+  // }
+
   render() {
     return (
       <>
@@ -21,6 +62,7 @@ class TimeSlotModal extends React.Component {
                 className="form-control"
                 placeholder="Type full name"
                 defaultValue={this.props.bookedName}
+                onChange={e => this.updateInput(e, "name")}
               />
             </div>
             <div className="form-group">
@@ -30,6 +72,7 @@ class TimeSlotModal extends React.Component {
                 className="form-control"
                 placeholder="Type phone number"
                 defaultValue={this.props.bookedNum}
+                onChange={e => this.updateInput(e, "num")}
               />
             </div>
           </Modal.Body>
@@ -37,7 +80,11 @@ class TimeSlotModal extends React.Component {
             <Button variant="danger" onClick={this.props.handleDelete}>
               Delete
             </Button>
-            <Button variant="info" onClick={this.props.handleSubmit}>
+            <Button
+              disabled={!this.state.isChanged}
+              variant="info"
+              onClick={() => this.handleSubmit()}
+            >
               Submit
             </Button>
           </Modal.Footer>
@@ -74,9 +121,10 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: "DELETE_APPT"
       }),
-    handleSubmit: () =>
+    handleSubmit: appointmentInfo =>
       dispatch({
-        type: "SUBMIT_APPT"
+        type: "SUBMIT_APPT",
+        payload: appointmentInfo
       })
   };
 };
