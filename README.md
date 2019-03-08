@@ -5,6 +5,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 type npm install
 npm start in the terminal
 
+## Live demo
+
+For a live demo click the link below
+https://lhp0121.github.io/timeslotdemo/
+
 ---
 
 by Laura C.
